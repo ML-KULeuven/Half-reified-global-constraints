@@ -60,3 +60,25 @@ While our implementation is generic, this repository implements it for the const
 ├── models.py                  # CPMpy model generation functions
 └── utils.py                   # utilities
 ```
+
+## Running the experiments
+
+The paper considers 3 use-cases of half-reified (global) constraints:
+- Solving a model with nested global constraints
+- Solving a Max-CSP problem
+- Extracing a solver-core after solving under assumptions.
+
+These cases are denoted as `justsolve`, `maxcsp` and `assump` in the experiment runner `experiments.py`.
+
+To run the experiments, setup the configuration at the bottom of the `experiments.py` file.
+For the results in the paper, we used all available instances (set `num_experiments = -1`).
+
+For benchmarks, you can chose from: `random-alldiff`, `random-gcc`, `random-cumulative`, `rcpsp`, `set` and `xcsp3`.
+You can use any solver implemented in CPMpy to use, but for the experiments in the paper, we used `ortools`, `cpo` and `choco`.
+
+Finally, you can also chose the search strategy to use (`default`, `bv-orig-aux` or `orig-bv-`aux`).
+
+We use a timeout of 3600s for each experiment.
+
+The `experiments.py` script will save the results in a pickled pandas DataFrame.
+The `plot_results` utility function in `utils.py` is used to plot the results.
