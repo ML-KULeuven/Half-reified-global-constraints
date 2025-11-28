@@ -255,7 +255,6 @@ def get_rcpsp_configs(solver, num_experiments):
 def get_xcsp3_configs(solver, num_experiments):
 
     classes = ["decomp", "aux", "auxdummy", "auxminimal", "auxminimaldummy"]
-    classes = ['aux']
 
     xcsp3_overview = pd.read_csv("benchmarks/xcsp3_overview.csv")
 
