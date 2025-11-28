@@ -77,7 +77,7 @@ def compute_maxcsp(soft, hard, weights, solver, search_order="default", **solver
 
     raise ValueError(f"Unknown exit status {model.status().exitstatus}")
 
-def justsolve(model, solver, **solver_kwargs):
+def justsolve(model, solver, search_order, **solver_kwargs):
 
     bvs = [v for v in get_variables(model.constraints) if v.name.startswith("IMPL_")]
 
