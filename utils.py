@@ -68,8 +68,8 @@ def init_solver_with_search_order(model, solver, bvs, search_order, **solver_kwa
     s = cp.SolverLookup.get(solver)
     s.solver_vars(order) # ensure insertion-order is respected
     s += d_model.constraints
-    if model.objective_ is not None:
-        s.objective(model.objective_, model.objective_is_min)
+    if d_model.objective_ is not None:
+        s.objective(d_model.objective_, d_model.objective_is_min)
 
     # solvers have different ways of setting search order
     if search_order == "default":
