@@ -292,15 +292,17 @@ if __name__ == "__main__":
     import pandas as pd
     from cpmpy.tools.explain.utils import make_assump_model
 
-    num_experiments = -1
     do_plot = True
 
     configs = []
-    benchmark = "xcsp3"
+
+    # SETUP EXPERIMENT CONFIG HERE
+    num_experiments = 50 # change to -1 for running all experiments.
+    benchmark = "random-alldiff"
     solver = "ortools"
-    experiment_type = "assump"
+    experiment_type = "maxcsp"
     search_order="default"
-    TIMEOUT = 5
+    TIMEOUT = 60 # change to 3600s for full experiment run
 
     solver_kwargs = dict(time_limit=TIMEOUT)
     if solver == "ortools":
@@ -327,11 +329,11 @@ if __name__ == "__main__":
     results = []
     for i, (experiment_params, config) in enumerate(tqdm(configs)):
         if experiment_type == "maxcsp":
-            result  = compute_maxcsp(solver=solver, **experiment_params, **solver_kwargs)
+            result  = compute_maxcsp(solver=solver, search_order=search_order, **experiment_params, **solver_kwargs)
         elif experiment_type == "assump":
-            result = get_solver_core(solver=solver, **experiment_params, **solver_kwargs)
+            result = get_solver_core(solver=solver, search_order=search_order, **experiment_params, **solver_kwargs)
         elif experiment_type == "justsolve":
-            result  = justsolve(solver=solver, **experiment_params, **solver_kwargs)
+            result  = justsolve(solver=solver, search_order=search_order, **experiment_params, **solver_kwargs)
         else:
             raise ValueError(f"Unknown experiment type {experiment_type}")
 
