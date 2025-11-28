@@ -1,0 +1,154 @@
+,track,year,fname,objective_value,time_total,status,InDomain,alldifferent,alldifferent_except_n,alldifferent_lists,channelValue,cumulative,decreasing,gcc,increasing,inverse,lex_chain_lesseq,negative_table,no_overlap,no_overlap2d,precedence,regular,short_table,strictly_increasing,subcircuitwithstart,table,num_globals
+74,COP,2024,WordGolf-4-ogd2008-50-0_c24.xml.lzma,6,89.790201663971,OPTIMUM FOUND,,,,,,,,,,,,,,,,,,,,2,2
+75,COP,2024,WordGolf-4-ogd2008-50-3_c24.xml.lzma,4,80.2938423156738,OPTIMUM FOUND,,,,,,,,,,,,,,,,,,,,2,2
+122,COP23,2023,KidneyExchange-4-041_c23.xml.lzma,1,4.63523888587952,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+123,COP23,2023,KidneyExchange-4-051_c23.xml.lzma,1,4.78329849243164,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+124,COP23,2023,KidneyExchange-4-061_c23.xml.lzma,11,5.36829495429993,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+125,COP23,2023,KidneyExchange-4-071_c23.xml.lzma,29,24.3426578044891,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+126,COP23,2023,KidneyExchange-4-081_c23.xml.lzma,45,27.6827113628387,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+127,COP23,2023,KidneyExchange-4-091_c23.xml.lzma,15,27.4291877746582,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+128,COP23,2023,KidneyExchange-4-101_c23.xml.lzma,29,29.3058726787567,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+129,COP23,2023,KidneyExchange-4-111_c23.xml.lzma,37,106.141488552094,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+130,COP23,2023,KidneyExchange-4-121_c23.xml.lzma,43,208.871690034866,OPTIMUM FOUND,,1,,,,,,,,,,,,,1,,,,,,2
+185,CSP23,2023,AntimagicSquare-03_c23.xml.lzma,,1.88581442832947,UNSATISFIABLE,,2,,,,,,,,,,,,,,,,,,,2
+109,COP23,2023,Hsp-10405_c23.xml.lzma,198,0.938865661621094,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+110,COP23,2023,Hsp-11406_c23.xml.lzma,137,1.00746536254883,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+111,COP23,2023,Hsp-12407_c23.xml.lzma,200,1.22162652015686,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+112,COP23,2023,Hsp-13408_c23.xml.lzma,569,1.21819663047791,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+113,COP23,2023,Hsp-14409_c23.xml.lzma,610,0.992094039916992,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+114,COP23,2023,Hsp-15410_c23.xml.lzma,653,1.61852622032166,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+115,COP23,2023,Hsp-aux-10405_c23.xml.lzma,198,0.953870296478272,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+116,COP23,2023,Hsp-aux-11406_c23.xml.lzma,137,1.21781039237976,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+117,COP23,2023,Hsp-aux-12407_c23.xml.lzma,200,1.32655239105225,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+118,COP23,2023,Hsp-aux-13408_c23.xml.lzma,569,1.44120812416077,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+119,COP23,2023,Hsp-aux-14409_c23.xml.lzma,610,1.32007265090942,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+120,COP23,2023,Hsp-aux-15410_c23.xml.lzma,653,1.43291091918945,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,1,3
+7,COP,2024,Cargo-01-0s-1913_c24.xml.lzma,0,2.05257773399353,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+8,COP,2024,Cargo-02-0s-1139_c24.xml.lzma,25,1.96698045730591,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+9,COP,2024,Cargo-04-1s-626_c24.xml.lzma,714,4.05603504180908,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+10,COP,2024,Cargo-05-1s-954_c24.xml.lzma,2883,2.80314898490906,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+11,COP,2024,Cargo-06-1s-3927_c24.xml.lzma,3394,47.8636910915375,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+12,COP,2024,Cargo-07-1s-133_c24.xml.lzma,328,3.83555006980896,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+13,COP,2024,Cargo-08-222f-3475_c24.xml.lzma,20679,501.016195297241,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+14,COP,2024,Cargo-09-1s-18_c24.xml.lzma,265,2.63546323776245,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+15,COP,2024,Cargo-10-15966f-2060_c24.xml.lzma,5645,45.9712204933167,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+16,COP,2024,Cargo-22_c24.xml.lzma,884,4.15969109535217,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+17,COP,2024,Cargo-24_c24.xml.lzma,0,1.32984161376953,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+18,COP,2024,Cargo-25_c24.xml.lzma,0,1.40361905097961,OPTIMUM FOUND,,,,,,3,,,,,,,,1,,,,,,,4
+136,COP23,2023,RIP-25-0-j060-01-01_c23.xml.lzma,187,0.923006057739258,OPTIMUM FOUND,,,,,,4,,,,,,,,,,,,,,,4
+137,COP23,2023,RIP-25-0-j090-01-01_c23.xml.lzma,214,26.125739812851,OPTIMUM FOUND,,,,,,4,,,,,,,,,,,,,,,4
+138,COP23,2023,RIP-25-0-j120-01-01_c23.xml.lzma,199,13.6055743694305,OPTIMUM FOUND,,,,,,4,,,,,,,,,,,,,,,4
+139,COP23,2023,RIP-25-2-j060-20-01_c23.xml.lzma,118,1.13521814346313,OPTIMUM FOUND,,,,,,4,,,,,,,,,,,,,,,4
+140,COP23,2023,RIP-25-2-j090-20-01_c23.xml.lzma,123,1.69678378105164,OPTIMUM FOUND,,,,,,4,,,,,,,,,,,,,,,4
+89,COP23,2023,CarpetCutting-test02_c23.xml.lzma,919,1.81898760795593,OPTIMUM FOUND,2,,,,,2,,,,,,,,1,,,,,,,5
+54,COP,2024,TestScheduling-t020m10r03-1_c24.xml.lzma,1876,1.39998531341553,OPTIMUM FOUND,2,,,,,1,,,,,,,3,,,,,,,,6
+88,COP23,2023,CarpetCutting-test01_c23.xml.lzma,621,1.23081779479981,OPTIMUM FOUND,3,,,,,2,,,,,,,,1,,,,,,,6
+94,COP23,2023,CarpetCutting-test11_c23.xml.lzma,963,1.2121057510376,OPTIMUM FOUND,3,,,,,2,,,,,,,,1,,,,,,,6
+56,COP,2024,TestScheduling-t020m10r10-1_c24.xml.lzma,1337,1.46739435195923,OPTIMUM FOUND,2,,,,,1,,,,,,,4,,,,,,,,7
+90,COP23,2023,CarpetCutting-test03_c23.xml.lzma,991,3.25761604309082,OPTIMUM FOUND,3,,,,,2,,,,,,,,1,,,,,,1,7
+57,COP,2024,TestScheduling-t030m10r03-1_c24.xml.lzma,2901,2.31748604774475,OPTIMUM FOUND,4,,,,,1,,,,,,,3,,,,,,,,8
+194,CSP23,2023,NonTransitiveDice-08-08-3_c23.xml.lzma,,36.4299051761627,UNSATISFIABLE,,,,,,,,,8,,,,,,,,,,,,8
+6,COP,2024,BinPacking2-n1c1w1a_c24.xml.lzma,25,2.87475728988647,OPTIMUM FOUND,,,,,,,,,8,,,,,,,,,,,1,9
+91,COP23,2023,CarpetCutting-test04_c23.xml.lzma,1144,192.33692407608,OPTIMUM FOUND,5,,,,,2,,,,,,,,1,,,,,,1,9
+92,COP23,2023,CarpetCutting-test05_c23.xml.lzma,1122,174.607868432999,OPTIMUM FOUND,5,,,,,2,,,,,,,,1,,,,,,1,9
+95,COP23,2023,CarpetCutting-test16_c23.xml.lzma,1151,473.857481002808,OPTIMUM FOUND,5,,,,,2,,,,,,,,1,,,,,,1,9
+195,CSP23,2023,NonTransitiveDice-10-10-3_c23.xml.lzma,,412.132145404816,UNSATISFIABLE,,,,,,,,,10,,,,,,,,,,,,10
+55,COP,2024,TestScheduling-t020m10r05-1_c24.xml.lzma,2586,1.43670749664307,OPTIMUM FOUND,5,,,,,1,,,,,,,5,,,,,,,,11
+61,COP,2024,TestScheduling-t030m20r05-1_c24.xml.lzma,3195,16.7684195041657,OPTIMUM FOUND,5,,,,,1,,,,,,,5,,,,,,,,11
+161,CSP,2024,FastMatrixMultiplication-2-2-2-04.xml.lzma,,2.29023385047913,UNSATISFIABLE,,,,,,,,,,,3,,,,8,,,,,,11
+60,COP,2024,TestScheduling-t030m20r03-1_c24.xml.lzma,2200,12.0276117324829,OPTIMUM FOUND,8,,,,,1,,,,,,,3,,,,,,,,12
+66,COP,2024,TestScheduling-t050m20r03-1_c24.xml.lzma,3869,6.47842359542847,OPTIMUM FOUND,8,,,,,1,,,,,,,3,,,,,,,,12
+58,COP,2024,TestScheduling-t030m10r05-1_c24.xml.lzma,1998,2.88037276268005,OPTIMUM FOUND,7,,,,,1,,,,,,,5,,,,,,,,13
+121,COP23,2023,Hsp-table-10405_c23.xml.lzma,198,394.825365781784,OPTIMUM FOUND,,1,,,,,,,,,,,1,,,,,,,11,13
+59,COP,2024,TestScheduling-t030m10r10-1_c24.xml.lzma,3344,19.2276842594147,OPTIMUM FOUND,3,,,,,1,,,,,,,10,,,,,,,,14
+62,COP,2024,TestScheduling-t030m20r10-1_c24.xml.lzma,3702,17.4495108127594,OPTIMUM FOUND,3,,,,,1,,,,,,,10,,,,,,,,14
+63,COP,2024,TestScheduling-t050m10r03-1_c24.xml.lzma,7067,17.7697339057922,OPTIMUM FOUND,10,,,,,1,,,,,,,3,,,,,,,,14
+64,COP,2024,TestScheduling-t050m10r05-1_c24.xml.lzma,5397,8.87250232696533,OPTIMUM FOUND,8,,,,,1,,,,,,,5,,,,,,,,14
+162,CSP,2024,FastMatrixMultiplication-2-2-2-05.xml.lzma,,57.5767467021942,UNSATISFIABLE,,,,,,,,,,,4,,,,10,,,,,,14
+67,COP,2024,TestScheduling-t050m20r05-1_c24.xml.lzma,6273,52.7831490039825,OPTIMUM FOUND,9,,,,,1,,,,,,,5,,,,,,,,15
+96,COP23,2023,GBACP-UD04_c23.xml.lzma,396,113.181166648865,OPTIMUM FOUND,,,,,,,,16,,,,,,,,,,,,,16
+141,COP23,2023,Sonet-s2ring02_c23.xml.lzma,14,2.61221122741699,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,15,,,,16
+93,COP23,2023,CarpetCutting-test10_c23.xml.lzma,3982,484.053050041199,OPTIMUM FOUND,13,,,,,2,,,,,,,,1,,,,,,1,17
+71,COP,2024,TestScheduling-t100m20r03-1_c24.xml.lzma,6585,34.1373229026794,OPTIMUM FOUND,15,,,,,1,,,,,,,3,,,,,,,,19
+65,COP,2024,TestScheduling-t050m10r10-1_c24.xml.lzma,6499,31.9470820426941,OPTIMUM FOUND,11,,,,,1,,,,,,,10,,,,,,,,22
+44,COP,2024,RubiksCube-10-4-20-0_c24.xml.lzma,10,11.439651966095,OPTIMUM FOUND,,20,,,,,,,,,,,,,,,1,,,2,23
+45,COP,2024,RubiksCube-10-4-20-3_c24.xml.lzma,10,20.5043289661407,OPTIMUM FOUND,,20,,,,,,,,,,,,,,,1,,,2,23
+46,COP,2024,RubiksCube-11-4-20-0_c24.xml.lzma,11,45.6756381988525,OPTIMUM FOUND,,20,,,,,,,,,,,,,,,1,,,2,23
+47,COP,2024,RubiksCube-11-4-20-3_c24.xml.lzma,11,78.7972931861877,OPTIMUM FOUND,,20,,,,,,,,,,,,,,,1,,,2,23
+48,COP,2024,RubiksCube-12-4-20-1_c24.xml.lzma,12,312.075625181198,OPTIMUM FOUND,,20,,,,,,,,,,,,,,,1,,,2,23
+68,COP,2024,TestScheduling-t050m20r10-1_c24.xml.lzma,5211,33.7836985588074,OPTIMUM FOUND,12,,,,,1,,,,,,,10,,,,,,,,23
+69,COP,2024,TestScheduling-t100m10r03-1_c24.xml.lzma,8711,10.7291753292084,OPTIMUM FOUND,17,,,,,1,,,,,,,5,,,,,,,,23
+70,COP,2024,TestScheduling-t100m10r10-1_c24.xml.lzma,10491,235.482484340668,OPTIMUM FOUND,9,,,,,1,,,,,,,13,,,,,,,,23
+0,COP,2024,AztecDiamondSym-03_c24.xml.lzma,69,2.45283007621765,OPTIMUM FOUND,,,,,,,,1,,,,,,,,,24,,,,25
+142,COP23,2023,Sonet-s3ring02_c23.xml.lzma,20,49.5311245918274,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+143,COP23,2023,Sonet-s3ring03_c23.xml.lzma,22,169.838669300079,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+144,COP23,2023,Sonet-s3ring05_c23.xml.lzma,20,56.9960129261017,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+145,COP23,2023,Sonet-s3ring06_c23.xml.lzma,22,203.31380033493,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+146,COP23,2023,Sonet-s3ring07_c23.xml.lzma,20,23.3767509460449,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+147,COP23,2023,Sonet-s3ring08_c23.xml.lzma,20,17.025936126709,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+148,COP23,2023,Sonet-s3ring09_c23.xml.lzma,22,213.334827184677,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+149,COP23,2023,Sonet-s3ring11_c23.xml.lzma,22,775.59768819809,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+150,COP23,2023,Sonet-s3ring12_c23.xml.lzma,20,36.6338043212891,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+151,COP23,2023,Sonet-s3ring13_c23.xml.lzma,21,42.3241314888,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+152,COP23,2023,Sonet-s3ring14_c23.xml.lzma,23,292.577613830566,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+153,COP23,2023,Sonet-s3ring15_c23.xml.lzma,22,311.778449058533,OPTIMUM FOUND,,,,,,,,,,,1,,,,,,24,,,,25
+72,COP,2024,TestScheduling-t100m20r05-1_c24.xml.lzma,9098,54.0859422683716,OPTIMUM FOUND,23,,,,,1,,,,,,,5,,,,,,,,29
+50,COP,2024,StillLife-05-05_c24.xml.lzma,16,1.17384338378906,OPTIMUM FOUND,,,,,,,,,,,,12,,,,,,,,25,37
+1,COP,2024,AztecDiamondSym-04_c24.xml.lzma,341,5.67876219749451,OPTIMUM FOUND,,,,,,,,1,,,,,,,,,40,,,,41
+53,COP,2024,StillLife-wastage-05-05_c24.xml.lzma,16,5.3985641002655,OPTIMUM FOUND,,,,,,,,,,,,20,,,,,,,,25,45
+40,COP,2024,MaximumDensityOscillatingLife-5-2_c24.xml.lzma,28,14.5599222183228,OPTIMUM FOUND,,,,1,,,,,,,8,,,,,,50,,,,59
+37,COP,2024,FoolSolitaire-dec2-3-0.xml.lzma,6,365.072049856186,OPTIMUM FOUND,,,,,,,,,,,,29,,,,,30,,,1,60
+2,COP,2024,AztecDiamondSym-05_c24.xml.lzma,1189,9.40017795562744,OPTIMUM FOUND,,,,,,,,1,,,,,,,,,60,,,,61
+73,COP,2024,TravelingTournament-galaxy04_c24.xml.lzma,416,2.04851102828979,OPTIMUM FOUND,28,6,,,,,,4,,,,,,,,4,28,,,,70
+86,COP23,2023,BeerJugs-dec-01_c23.xml.lzma,25,30.7913329601288,OPTIMUM FOUND,,,,,,,,,,,,,,,,,,,,70,70
+87,COP23,2023,BeerJugs-dec-07_c23.xml.lzma,49,459.919164896011,OPTIMUM FOUND,,,,,,,,,,,,,,,,,,,,70,70
+179,CSP,2024,SocialGolfers-06-06-07_c24.xml.lzma,,26.6803061962128,UNSATISFIABLE,,60,,,,,,7,,,2,,,,,,,,,2,71
+181,CSP,2024,SocialGolfers-cnt-06-06-07_c24.xml.lzma,,18.3845613002777,UNSATISFIABLE,,60,,,,,,7,,,2,,,,,,,,,2,71
+133,COP23,2023,ProgressiveParty-rally-red12-05_c23.xml.lzma,5,2.90587544441223,OPTIMUM FOUND,,,12,,60,,,,,,,,,,,,,,,,72
+41,COP,2024,MaximumDensityOscillatingLife-6-2_c24.xml.lzma,40,493.003445625305,OPTIMUM FOUND,,,,1,,,,,,,8,,,,,,72,,,,81
+180,CSP,2024,SocialGolfers-08-04-11_c24.xml.lzma,,20.7228064537048,UNSATISFIABLE,,70,,,,,,11,,,2,,,,,,,,,1,84
+182,CSP,2024,SocialGolfers-cnt-08-04-11_c24.xml.lzma,,14.446145772934,UNSATISFIABLE,,70,,,,,,11,,,2,,,,,,,,,1,84
+3,COP,2024,AztecDiamondSym-06_c24.xml.lzma,3324,38.0966141223907,OPTIMUM FOUND,,,,,,,,1,,,,,,,,,84,,,,85
+51,COP,2024,StillLife-08-08_c24.xml.lzma,36,21.6576311588287,OPTIMUM FOUND,,,,,,,,,,,,24,,,,,,,,64,88
+134,COP23,2023,ProgressiveParty-rally-red12-07_c23.xml.lzma,7,10.3050167560577,OPTIMUM FOUND,,,12,,84,,,,,,,,,,,,,,,,96
+38,COP,2024,LitPuzzle-10_c24.xml.lzma,44,0.96909236907959,OPTIMUM FOUND,100,,,,,,,,,,,,,,,,,,,,100
+52,COP,2024,StillLife-08-10_c24.xml.lzma,44,381.744895458221,OPTIMUM FOUND,,,,,,,,,,,,28,,,,,,,,80,108
+135,COP23,2023,ProgressiveParty-rally-red12-09_c23.xml.lzma,9,10.1474032402039,OPTIMUM FOUND,,,12,,108,,,,,,,,,,,,,,,,120
+39,COP,2024,LitPuzzle-15_c24.xml.lzma,117,81.9374244213104,OPTIMUM FOUND,225,,,,,,,,,,,,,,,,,,,,225
+169,CSP,2024,MisteryShopper-4-06-2-6-0_c24.xml.lzma,,2.34475183486938,UNSATISFIABLE,,52,,,,,,,,4,2,,,,,,,4,,176,238
+168,CSP,2024,MisteryShopper-4-06-1-6-0_c24.xml.lzma,,2.13573861122131,UNSATISFIABLE,,54,,,,,,,,4,2,,,,,,,4,,184,248
+163,CSP,2024,FastMatrixMultiplication-table-2-2-2-04.xml.lzma,,9.58279871940613,UNSATISFIABLE,,,,,,,,,,,,,,,,,256,,,,256
+4,COP,2024,BinPacking-n1c1w1a_c24.xml.lzma,25,6.63416433334351,OPTIMUM FOUND,232,,,,,,29,1,,,1,,,,,,,,,,263
+5,COP,2024,BinPacking-table-n1c1w1a_c24.xml.lzma,25,51.6313490867615,OPTIMUM FOUND,232,,,,,,,1,,,1,,,,,,,,,29,263
+19,COP,2024,Charlotte-06-0_c24.xml.lzma,4695,1.69991016387939,OPTIMUM FOUND,36,31,,,,,,,,,,,,,,,237,,,,304
+20,COP,2024,Charlotte-06-1_c24.xml.lzma,5099,1.84231519699097,OPTIMUM FOUND,36,31,,,,,,,,,,,,,,,237,,,,304
+21,COP,2024,Charlotte-06-2_c24.xml.lzma,5612,1.99942755699158,OPTIMUM FOUND,36,31,,,,,,,,,,,,,,,237,,,,304
+164,CSP,2024,FastMatrixMultiplication-table-2-2-2-05.xml.lzma,,66.1494126319885,UNSATISFIABLE,,,,,,,,,,,,,,,,,320,,,,320
+171,CSP,2024,MisteryShopper-5-08-2-6-0_c24.xml.lzma,,5.31134223937988,UNSATISFIABLE,,86,,,,,,,,5,2,,,,,,,5,,380,478
+183,CSP,2024,Subisomorphism-g34-g36_c24.xml.lzma,,3.20681190490723,UNSATISFIABLE,,1,,,,,,,,,,,,,,,,,,480,481
+170,CSP,2024,MisteryShopper-5-08-1-6-0_c24.xml.lzma,,6.56967067718506,UNSATISFIABLE,,88,,,,,,,,5,2,,,,,,,5,,390,490
+174,CSP,2024,MisteryShopper-5-10-3-6-0_c24.xml.lzma,,4.80011630058289,UNSATISFIABLE,,104,,,,,,,,5,2,,,,,,,5,,470,586
+173,CSP,2024,MisteryShopper-5-10-2-6-0_c24.xml.lzma,,9.60526251792908,UNSATISFIABLE,,106,,,,,,,,5,2,,,,,,,5,,480,598
+172,CSP,2024,MisteryShopper-5-10-1-6-0_c24.xml.lzma,,11.9620254039764,UNSATISFIABLE,,108,,,,,,,,5,2,,,,,,,5,,490,610
+22,COP,2024,Charlotte-12-0_c24.xml.lzma,9558,4.37569808959961,OPTIMUM FOUND,72,61,,,,,,,,,,,,,,,507,,,,640
+23,COP,2024,Charlotte-12-1_c24.xml.lzma,10380,4.01045727729797,OPTIMUM FOUND,72,61,,,,,,,,,,,,,,,507,,,,640
+24,COP,2024,Charlotte-12-2_c24.xml.lzma,9881,4.56066250801086,OPTIMUM FOUND,72,61,,,,,,,,,,,,,,,507,,,,640
+99,COP23,2023,HCPizza-10-10-2-6-00_c23.xml.lzma,100,2.10903668403625,OPTIMUM FOUND,428,,,,,,,,,,,,,,,,,,,428,856
+25,COP,2024,Charlotte-18-0_c24.xml.lzma,14525,7.26990270614624,OPTIMUM FOUND,108,91,,,,,,,,,,,,,,,777,,,,976
+26,COP,2024,Charlotte-18-1_c24.xml.lzma,15141,12.4345753192902,OPTIMUM FOUND,108,91,,,,,,,,,,,,,,,777,,,,976
+27,COP,2024,Charlotte-18-2_c24.xml.lzma,14549,9.26086926460266,OPTIMUM FOUND,108,91,,,,,,,,,,,,,,,777,,,,976
+177,CSP,2024,MisteryShopper-6-12-3-6-0_c24.xml.lzma,,10.3156292438507,UNSATISFIABLE,,150,,,,,,,,6,2,,,,,,,6,,828,992
+102,COP23,2023,HCPizza-12-12-2-6-02_c23.xml.lzma,144,1.28254413604736,OPTIMUM FOUND,502,,,,,,,,,,,,,,,,,,,502,1004
+176,CSP,2024,MisteryShopper-6-12-2-6-0_c24.xml.lzma,,29.700731754303,UNSATISFIABLE,,152,,,,,,,,6,2,,,,,,,6,,840,1006
+175,CSP,2024,MisteryShopper-6-12-1-6-0_c24.xml.lzma,,64.235554933548,UNSATISFIABLE,,154,,,,,,,,6,2,,,,,,,6,,852,1020
+100,COP23,2023,HCPizza-12-12-2-6-00_c23.xml.lzma,141,1.10877394676209,OPTIMUM FOUND,543,,,,,,,,,,,,,,,,,,,543,1086
+101,COP23,2023,HCPizza-12-12-2-6-01_c23.xml.lzma,144,1.46811008453369,OPTIMUM FOUND,618,,,,,,,,,,,,,,,,,,,618,1236
+28,COP,2024,Charlotte-24-0_c24.xml.lzma,19445,16.3256614208221,OPTIMUM FOUND,144,121,,,,,,,,,,,,,,,1047,,,,1312
+29,COP,2024,Charlotte-24-1_c24.xml.lzma,20049,18.1033163070679,OPTIMUM FOUND,144,121,,,,,,,,,,,,,,,1047,,,,1312
+30,COP,2024,Charlotte-24-2_c24.xml.lzma,20369,19.6098132133484,OPTIMUM FOUND,144,121,,,,,,,,,,,,,,,1047,,,,1312
+105,COP23,2023,HCPizza-15-15-2-7-02_c23.xml.lzma,225,2.06583714485168,OPTIMUM FOUND,1136,,,,,,,,,,,,,,,,,,,1136,2272
+103,COP23,2023,HCPizza-15-15-2-7-00_c23.xml.lzma,225,1.85947251319885,OPTIMUM FOUND,1211,,,,,,,,,,,,,,,,,,,1211,2422
+104,COP23,2023,HCPizza-15-15-2-7-01_c23.xml.lzma,225,2.60425972938538,OPTIMUM FOUND,1276,,,,,,,,,,,,,,,,,,,1276,2552
+106,COP23,2023,HCPizza-20-20-2-8-00_c23.xml.lzma,400,5.34723114967346,OPTIMUM FOUND,3635,,,,,,,,,,,,,,,,,,,3635,7270
+108,COP23,2023,HCPizza-20-20-2-8-02_c23.xml.lzma,400,6.45035672187805,OPTIMUM FOUND,3650,,,,,,,,,,,,,,,,,,,3650,7300
+107,COP23,2023,HCPizza-20-20-2-8-01_c23.xml.lzma,400,5.37191987037659,OPTIMUM FOUND,3834,,,,,,,,,,,,,,,,,,,3834,7668
