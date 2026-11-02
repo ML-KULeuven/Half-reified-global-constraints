@@ -16,7 +16,7 @@ class CustomCumulative(CustomGlobal, cp.Cumulative):
         super().__init__(*args, **kwargs)
         self.name = "custom_cumulative"
 
-        assert self.args[2] is None, "end should be None after refactoring, are you on the `no_end_cumulative` branch of CPMpy?"
+        assert len(self.args) == 4, "expected Cumulative without end variables"
         self.cpm_global = cp.Cumulative
 
 class NativeCumulative(CustomCumulative, NativeGlobal):
@@ -33,10 +33,9 @@ class TaskDecomposedCumulative(CustomCumulative, cp.Cumulative):
 
     def iftrue(self):
 
-        start, dur, end, demand, cap = self.args
+        start, dur, demand, cap = self.args
         start = list(start)
         dur = list(dur)
-        assert end is None, "end should be None after refactoring"
 
         njobs = len(start)
         cons = []
@@ -62,7 +61,7 @@ class CumulativeAuxHalfReif(AuxGlobal, CustomCumulative):
         super().__init__(*args, **kwargs)
         self.name = "aux_cumulative"
 
-        self.to_replace = [0,1,3,4]
+        self.to_replace = [0, 1, 2, 3]
         self.cpm_global = cp.Cumulative
 
 class CumulativeAuxHalfReifDummy(CumulativeAuxHalfReif):
@@ -71,7 +70,7 @@ class CumulativeAuxHalfReifDummy(CumulativeAuxHalfReif):
         super().__init__(*args, **kwargs)
         self.name = "aux_cumulative_dummy"
 
-        self.to_replace = [0,1,3,4]
+        self.to_replace = [0, 1, 2, 3]
         self.cpm_global = cp.Cumulative
 
     def iffalse(self):
@@ -88,14 +87,14 @@ class CumulativeAuxHalfReifMinimal(AuxGlobal, CustomCumulative):
         super().__init__(*args, **kwargs)
         self.name = "aux_cumulative_minimal"
 
-        # start, dur, demand, cap, only replace cap
-        self.to_replace = [4]
+        # start, dur, demand, cap — only replace cap
+        self.to_replace = [3]
         self.cpm_global = cp.Cumulative
 
     def get_aux_vars(self):
-        start, dur, end, demand, cap = self.args
+        start, dur, demand, cap = self.args
         max_demand = sum(get_bounds(demand)[1])
-        return [None, None, None, None, cp.intvar(0, max(get_bounds(cap)[1], max_demand))]
+        return [None, None, None, cp.intvar(0, max(get_bounds(cap)[1], max_demand))]
 
 class CumulativeAuxHalfReifMinimalDummy(CumulativeAuxHalfReifMinimal):
 
@@ -103,8 +102,8 @@ class CumulativeAuxHalfReifMinimalDummy(CumulativeAuxHalfReifMinimal):
         super().__init__(*args, **kwargs)
         self.name = "aux_cumulative_dummy_minimal"
 
-        # start, dur, demand, cap, only replace cap
-        self.to_replace = [4]
+        # start, dur, demand, cap — only replace cap
+        self.to_replace = [3]
         self.cpm_global = cp.Cumulative
 
     def iffalse(self):

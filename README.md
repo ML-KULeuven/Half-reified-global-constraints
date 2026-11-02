@@ -2,13 +2,13 @@
 
 This repository contains the code for replicating the experiments for the following paper, submitted to the Journal of Artificial Intelligence Research (JAIR)
 >
-> 
+>
 
 
 
 ## Getting started
 To run the experiments, you will need to install the following packages:
-- CPMpy on branch `no_end_cumulative`
+- CPMpy (>= 1.0, with Cumulative/NoOverlap without end variables)
 - OR-Tools
 - PyChoco
 - PyCSP3
@@ -18,8 +18,7 @@ To run the experiments, you will need to install the following packages:
 - natsort
 
 ```bash
-$ git+https://github.com/CPMpy/cpmpy@no_end_cumulative
-$ pip install ortools pychoco docplex pycsp3 pandas seaborn, natsort
+$ pip install cpmpy ortools pychoco docplex pycsp3 pandas seaborn natsort
 ```
 
 CP-optimizer requires a licence to be installed.
@@ -39,46 +38,37 @@ While our implementation is generic, this repository implements it for the const
 
 ```
 ├── README.md
-├── benchmarks 
-│   ├── generated.py          # generated benchmarks with alldifferent, gcc and cumulative constraints
-│   ├── rcpsp.py              # code for loading rcpsp instances
-│   ├── rcpsp_j60             # rcpsp instances downloaded from psplib.com
-│   ├── xcsp3_instances       # xcsp3 instances used in the experiments
-│   └── xcsp3_overview.csv    # metadata about the xcsp3 instances
-├── experiments.py            # experiment runner script
-├── globalconstraints         # main implementation of the global constraints
-│   ├── __init__.py
-│   ├── alldifferent.py
-│   ├── cumulative.py
-│   ├── gcc.py
-│   ├── inverse.py
-│   ├── negative_table.py
-│   ├── nooverlap.py
-│   ├── regular.py
-│   ├── superclass.py
-│   └── table.py
-├── models.py                  # CPMpy model generation functions
-└── utils.py                   # utilities
+├── Makefile              # make experiments <dataset>
+├── run_model.py          # one instance → one JSON
+├── experiments.py        # solvers + grid expansion for the Makefile
+├── benchmarks/
+├── globalconstraints/
+├── models.py
+└── utils.py
 ```
 
 ## Running the experiments
 
-The paper considers 3 use-cases of half-reified (global) constraints:
-- Solving a model with nested global constraints
-- Solving a Max-CSP problem
-- Extracing a solver-core after solving under assumptions.
+Use-cases: `justsolve`, `maxcsp`, `assump`.
 
-These cases are denoted as `justsolve`, `maxcsp` and `assump` in the experiment runner `experiments.py`.
+```bash
+make experiments random-alldiff
+make experiments random-alldiff SOLVER=ortools
+make experiments set TIMEOUT=10 NUM_EXPERIMENTS=2
+```
 
-To run the experiments, setup the configuration at the bottom of the `experiments.py` file.
-For the results in the paper, we used all available instances (set `num_experiments = -1`).
+Results go to `results/<dataset>/` (override with `OUTPUT=`). Already-finished
+JSON files are skipped.
 
-For benchmarks, you can chose from: `random-alldiff`, `random-gcc`, `random-cumulative`, `rcpsp`, `set` and `xcsp3`.
-You can use any solver implemented in CPMpy to use, but for the experiments in the paper, we used `ortools`, `cpo` and `choco`.
+`run_model.py` runs a single instance from CLI args (instance keys like `--n-vars` /
+`--seed` for alldiff, `--fname` for rcpsp) and rejects unavailable combinations
+(e.g. GCC+ortools, fixed search on ortools/cpo):
 
-Finally, you can also chose the search strategy to use (`default`, `bv-orig-aux` or `orig-bv-`aux`).
+```bash
+python run_model.py --dataset random-alldiff --solver ortools --experiment-type maxcsp \
+  --constraint AllDifferentAuxHalfReif --n-vars 10 --n-cons 10 --seed 0 \
+  --output out.json
+```
 
-We use a timeout of 3600s for each experiment.
-
-The `experiments.py` script will save the results in a pickled pandas DataFrame.
-The `plot_results` utility function in `utils.py` is used to plot the results.
+Each JSON has `"instance"` (the input params) plus result keys (`status`, `init_time`,
+`solve_time`, …). Paper defaults: `NUM_EXPERIMENTS=-1`, `TIMEOUT=3600`.

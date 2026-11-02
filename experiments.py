@@ -4,19 +4,14 @@ from os.path import join
 from time import time
 
 import cpmpy as cp
-from cpmpy.expressions.globalconstraints import GlobalConstraint
-from cpmpy.tools.xcsp3 import read_xcsp3
-
-from cpmpy.expressions.core import Operator
-from cpmpy.transformations.normalize import toplevel_list
-from cpmpy.transformations.get_variables import get_variables
 from cpmpy.solvers.solver_interface import ExitStatus
+from cpmpy.tools.explain.utils import make_assump_model
+from cpmpy.transformations.get_variables import get_variables
+from cpmpy.transformations.normalize import toplevel_list
 from natsort import natsorted
-from tqdm import tqdm
 
-from benchmarks.rcpsp import read_rcpsp
 from globalconstraints import *
-from utils import init_solver_with_search_order, plot_results
+from utils import init_solver_with_search_order
 
 
 def setup_maxcsp_experiment(model_func, data, global_name, global_cls):
@@ -130,228 +125,162 @@ def get_solver_core(soft, hard, solver, search_order="default", weights=None, **
 
     raise ValueError(f"Unknown exit status {solver.status().exitstatus}")
 
+
 ###############################################
-#       Getting the experiment configs        #
+#       Instance grids (params only)          #
 ###############################################
 
-def get_random_alldiff_configs(solver, num_experiments):
+DATASET_TYPES = {
+    "random-alldiff": ("maxcsp", "assump"),
+    "random-gcc": ("maxcsp", "assump"),
+    "random-cumulative": ("maxcsp", "assump"),
+    "set": ("justsolve",),
+    "rcpsp": ("maxcsp",),
+    "xcsp3": ("maxcsp", "assump"),
+}
 
-    classes = [BinaryDecomposedAllDifferent, AllDifferentAuxHalfReif, AllDifferentAuxHalfReifDummySol]
-    if solver in ["cpo", "choco"]:
-        classes += [NativeAllDifferent]
-    i = 0
-    for n_vars in [10, 20, 30, 40, 50]:
-        for n_cons in [10, 12, 14, 16, 18, 20]:
-            for seed in range(10):
+
+def iter_instances(dataset, solver, num_experiments=-1):
+    """Yield dicts of CLI kwargs identifying one instance (no models built)."""
+    if dataset == "random-alldiff":
+        classes = ["BinaryDecomposedAllDifferent", "AllDifferentAuxHalfReif", "AllDifferentAuxHalfReifDummySol"]
+        if solver in ("cpo", "choco"):
+            classes.append("NativeAllDifferent")
+        i = 0
+        for n_vars in [10, 20, 30, 40, 50]:
+            for n_cons in [10, 12, 14, 16, 18, 20]:
+                for seed in range(10):
+                    if i == num_experiments:
+                        return
+                    i += 1
+                    for constraint in classes:
+                        yield dict(n_vars=n_vars, n_cons=n_cons, seed=seed, constraint=constraint)
+
+    elif dataset == "random-gcc":
+        classes = ["BooleanDecomposedGCC", "GCCAuxHalfReif", "GCCAuxHalfReifMinimal", "GCCAuxHalfReifDummy"]
+        if solver == "choco":
+            classes.append("NativeGCC")
+        i = 0
+        for n_cons in [2, 4, 5]:
+            for seed in range(50):
                 if i == num_experiments:
                     return
                 i += 1
+                for constraint in classes:
+                    yield dict(n_vars=15, n_cons=n_cons, seed=seed, constraint=constraint)
 
-                data = generate_random_alldiffs(n_vars, n_cons, seed=seed)
+    elif dataset == "random-cumulative":
+        classes = ["TaskDecomposedCumulative", "CumulativeAuxHalfReif", "CumulativeAuxHalfReifMinimal",
+                   "CumulativeAuxHalfReifDummy", "CumulativeAuxHalfReifMinimalDummy"]
+        if solver == "choco":
+            classes.append("NativeCumulative")
+        i = 0
+        for n_tasks in [20, 30, 40, 50, 60]:
+            for n_cons in [4, 6, 8, 10, 12, 14, 16, 18, 20]:
+                for seed in range(7):
+                    if i == num_experiments:
+                        return
+                    i += 1
+                    for constraint in classes:
+                        yield dict(n_tasks=n_tasks, n_cons=n_cons, seed=seed, constraint=constraint)
 
-                for cls in classes:
-                    soft, hard, weights = setup_maxcsp_experiment(model_func=get_random_alldiff_model,
-                                                                  data=data,
-                                                                  global_name="AllDifferent",
-                                                                  global_cls=cls)
-                    yield dict(soft=soft, hard=hard, weights=weights), \
-                          dict(solver=solver, constraint=cls.__name__,
-                               n_vars=n_vars, n_cons=n_cons, seed=seed)
-
-def get_random_gcc_configs(solver, num_experiments):
-
-    classes = [BooleanDecomposedGCC, GCCAuxHalfReif, GCCAuxHalfReifMinimal, GCCAuxHalfReifDummy]
-    if solver == "choco":
-        classes += [NativeGCC]
-    i = 0
-    n_vars = 15
-    for n_cons in [2,4,5]:
-        for seed in range(50):
-            if i == num_experiments:
-                return
-            i += 1
-
-            data = generate_random_gcc(n_vars, n_cons, lb=0, ub=15,p=0.5, seed=seed)
-
-            for cls in classes:
-                soft, hard, weights = setup_maxcsp_experiment(model_func=get_random_gcc_model,
-                                                              data=data,
-                                                              global_name="GlobalCardinalityCount",
-                                                              global_cls=cls)
-                yield dict(soft=soft, hard=hard, weights=weights), \
-                      dict(solver=solver, constraint=cls.__name__,
-                           n_vars=n_vars, n_cons=n_cons, seed=seed)
-
-def get_random_cumulative_configs(solver, num_experiments):
-
-    classes = [TaskDecomposedCumulative, CumulativeAuxHalfReif, CumulativeAuxHalfReifMinimal,
-               CumulativeAuxHalfReifDummy, CumulativeAuxHalfReifMinimalDummy]
-    if solver == "choco":
-        classes += [NativeCumulative]
-    i = 0
-    for n_tasks in [20,30,40,50,60]:
-        for n_cons in [4,6,8,10,12,14,16,18,20]:
-            for seed in range(7):
+    elif dataset == "set":
+        classes = ["decomp", "aux", "auxdummy"]
+        if solver in ("cpo", "choco"):
+            classes.append("native")
+        i = 0
+        for n_cards in range(9, 200, 10):
+            for size_of_set in range(3, 100, 3):
                 if i == num_experiments:
                     return
                 i += 1
+                for constraint in classes:
+                    yield dict(n_cards=n_cards, size_of_set=size_of_set, seed=0, constraint=constraint)
 
-                data = generate_random_cumulatives(n_tasks, n_cons, lb=0, ub=50, p=0.5)
-
-                for cls in classes:
-                    soft, hard, weights = setup_maxcsp_experiment(model_func=get_random_cumulative_model,
-                                                                 data=data,
-                                                                 global_name="Cumulative",
-                                                                 global_cls=cls)
-                    yield dict(soft=soft, hard=hard, weights=weights), \
-                          dict(solver=solver, constraint=cls.__name__,
-                               n_tasks=n_tasks, n_cons=n_cons, seed=seed)
-
-def get_set_configs(solver, num_experiments):
-
-    classes = ["decomp", "aux", "auxdummy"]
-    if solver in {"cpo", "choco"}:
-        classes += ["native"]
-    i = 0
-    for n_cards in range(9,200,10):
-        for size_of_set in range(3,100,3):
-            seed = 0
+    elif dataset == "rcpsp":
+        classes = ["TaskDecomposedCumulative", "CumulativeAuxHalfReif", "CumulativeAuxHalfReifMinimal",
+                   "CumulativeAuxHalfReifDummy", "CumulativeAuxHalfReifMinimalDummy"]
+        if solver == "choco":
+            classes.append("NativeCumulative")
+        i = 0
+        for fname in natsorted(listdir("benchmarks/rcpsp_j60")):
             if i == num_experiments:
                 return
             i += 1
+            for constraint in classes:
+                yield dict(fname=fname, constraint=constraint)
 
-            data = generate_set_instance(n_cards, size_of_set=size_of_set, seed=seed)
-            for cls in classes:
-                model = get_set_model(**data,global_type=cls)
+    elif dataset == "xcsp3":
+        classes = ["decomp", "aux", "auxdummy", "auxminimal", "auxminimaldummy"]
+        i = 0
+        for fname in natsorted(listdir("benchmarks/xcsp3_instances")):
+            if i == num_experiments:
+                return
+            i += 1
+            for constraint in classes:
+                yield dict(fname=fname, constraint=constraint)
 
-                yield  dict(model=model),\
-                       dict(solver=solver, constraint=cls,
-                            n_cards=n_cards, size_of_set=size_of_set, seed=seed)
+    else:
+        raise ValueError(f"Unknown dataset {dataset}")
 
-def get_rcpsp_configs(solver, num_experiments):
 
-    classes = [TaskDecomposedCumulative, CumulativeAuxHalfReif, CumulativeAuxHalfReifMinimal,
-               CumulativeAuxHalfReifDummy, CumulativeAuxHalfReifMinimalDummy]
-    if solver == "choco":
-        classes += [NativeCumulative]
-    i = 0
-
-    dirname = "benchmarks/rcpsp_j60"
-    for fname in natsorted(listdir(dirname)):
-        if i == num_experiments:
-            return
-        i += 1
-
-        data = read_rcpsp(join(dirname,fname))
-        for cls in classes:
-            soft, hard, weights = setup_maxcsp_experiment(model_func=get_rcpsp_model,
-                                                          data=data,
-                                                          global_name="Cumulative",
-                                                          global_cls=cls)
-
-            yield dict(soft=soft, hard=hard, weights=weights), \
-                  dict(solver=solver, constraint=cls.__name__, fname=fname)
-
-def get_xcsp3_configs(solver, num_experiments):
-
-    classes = ["decomp", "aux", "auxdummy", "auxminimal", "auxminimaldummy"]
-
-    xcsp3_overview = pd.read_csv("benchmarks/xcsp3_overview.csv")
-
-    dirname = "benchmarks/xcsp3_instances"
-    i = 0
-    for fname in natsorted(listdir(dirname)):
-        if i == num_experiments:
-            return
-        i += 1
-
-        obj_val = xcsp3_overview[xcsp3_overview['fname']==fname].iloc[0]['objective_value']
-        print("Objective value for ", fname, " is ", obj_val)
-
-        data = dict(path = join(dirname,fname))
-        if not pd.isna(obj_val):
-            data['optimal'] = int(obj_val)
-
-        for cls in classes:
-            print(solver, cls)
-            soft, hard, weights = setup_maxcsp_experiment(model_func = get_xcsp3_model,
-                                                          data=dict(path=join(dirname,fname)),
-                                                          global_name="global_type",
-                                                          global_cls=cls)
-
-            yield dict(soft=soft, hard=hard, weights=weights), \
-                dict(solver=solver, constraint=cls, fname=fname)
+def output_name(inst):
+    """Flat filename for one instance JSON."""
+    c = inst["constraint"]
+    if "fname" in inst:
+        return f"{c}-{inst['fname']}.json"
+    if "n_tasks" in inst:
+        return f"{c}-t{inst['n_tasks']}-c{inst['n_cons']}-s{inst['seed']}.json"
+    if "n_cards" in inst:
+        return f"{c}-n{inst['n_cards']}-z{inst['size_of_set']}-s{inst['seed']}.json"
+    return f"{c}-v{inst['n_vars']}-c{inst['n_cons']}-s{inst['seed']}.json"
 
 
 if __name__ == "__main__":
-    from models import get_random_alldiff_model, get_random_gcc_model, get_random_cumulative_model, get_set_model, \
-    get_rcpsp_model, get_xcsp3_model
-    from benchmarks.generated import generate_random_alldiffs, generate_random_gcc, generate_random_cumulatives, \
-    generate_set_instance
+    # Batch driver used by the Makefile: expand the grid, skip existing outputs,
+    # shell out to run_model.py for each missing instance.
+    import argparse
+    import os
+    import subprocess
+    import sys
 
-    import pandas as pd
-    from cpmpy.tools.explain.utils import make_assump_model
+    parser = argparse.ArgumentParser(description="Expand experiment grid and run missing instances")
+    parser.add_argument("--dataset", required=True)
+    parser.add_argument("--solver", action="append", dest="solvers",
+                        help="Repeatable; default: ortools choco cpo")
+    parser.add_argument("--experiment-type", action="append", dest="types",
+                        help="Repeatable; default: types for the dataset")
+    parser.add_argument("--search-order", default="default")
+    parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--timeout", type=int, default=3600)
+    parser.add_argument("--num-experiments", type=int, default=-1)
+    args = parser.parse_args()
 
-    do_plot = True
+    solvers = args.solvers or ["ortools", "choco", "cpo"]
+    types = args.types or list(DATASET_TYPES[args.dataset])
+    os.makedirs(args.output_dir, exist_ok=True)
 
-    configs = []
+    for solver in solvers:
+        for experiment_type in types:
+            for inst in iter_instances(args.dataset, solver, args.num_experiments):
+                out_dir = join(args.output_dir, solver, experiment_type, args.search_order)
+                out = join(out_dir, output_name(inst))
+                if os.path.exists(out):
+                    continue
 
-    # SETUP EXPERIMENT CONFIG HERE
-    num_experiments = 50 # change to -1 for running all experiments.
-    benchmark = "random-alldiff"
-    solver = "ortools"
-    experiment_type = "maxcsp"
-    search_order="default"
-    TIMEOUT = 60 # change to 3600s for full experiment run
+                cmd = [
+                    sys.executable, "run_model.py",
+                    "--dataset", args.dataset,
+                    "--solver", solver,
+                    "--experiment-type", experiment_type,
+                    "--search-order", args.search_order,
+                    "--constraint", inst["constraint"],
+                    "--output", out,
+                    "--timeout", str(args.timeout),
+                ]
+                for key in ("n_vars", "n_cons", "n_tasks", "n_cards", "size_of_set", "seed", "fname"):
+                    if key in inst:
+                        cmd += [f"--{key.replace('_', '-')}", str(inst[key])]
 
-    solver_kwargs = dict(time_limit=TIMEOUT)
-    if solver == "ortools":
-        solver_kwargs['num_workers'] = 1
-    if solver == "cpo":
-        solver_kwargs['Workers'] = 1
-
-    if benchmark == "random-alldiff":
-        configs = get_random_alldiff_configs(solver, num_experiments)
-    elif benchmark == "random-gcc":
-        configs = get_random_gcc_configs(solver, num_experiments)
-    elif benchmark == "random-cumulative":
-        configs = get_random_cumulative_configs(solver, num_experiments)
-    elif benchmark == "set":
-        configs = get_set_configs(solver, num_experiments)
-    elif benchmark == "rcpsp":
-        configs = get_rcpsp_configs(solver, num_experiments)
-    elif benchmark == "xcsp3":
-        configs = get_xcsp3_configs(solver, num_experiments)
-    else:
-        raise ValueError(f"Unknown benchmark {benchmark}")
-
-
-    results = []
-    for i, (experiment_params, config) in enumerate(tqdm(configs)):
-        if experiment_type == "maxcsp":
-            result  = compute_maxcsp(solver=solver, search_order=search_order, **experiment_params, **solver_kwargs)
-        elif experiment_type == "assump":
-            result = get_solver_core(solver=solver, search_order=search_order, **experiment_params, **solver_kwargs)
-        elif experiment_type == "justsolve":
-            result  = justsolve(solver=solver, search_order=search_order, **experiment_params, **solver_kwargs)
-        else:
-            raise ValueError(f"Unknown experiment type {experiment_type}")
-
-        result.update(config)
-        results.append(result)
-
-    df = pd.DataFrame(results)
-    df.to_pickle(f"results/{benchmark}-{solver}-{experiment_type}-{search_order}.df")
-
-    if do_plot:
-        plot_results(df, solver=solver, benchmark=benchmark, experiment_type=experiment_type, search_order=search_order)
-
-    pd.set_option('display.max_rows', 500)
-    pd.set_option('display.max_columns', 500)
-
-    print(df)
-
-
-
-
-
+                print(" ".join(cmd))
+                subprocess.check_call(cmd)

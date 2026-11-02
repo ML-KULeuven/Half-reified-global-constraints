@@ -9,7 +9,7 @@ class CustomNoOverlap(CustomGlobal, cp.NoOverlap):
         super().__init__(*args, **kwargs)
         self.name = "custom_nooverlap"
 
-        assert self.args[2] is None, "end should be None after refactoring, are you on the `no_end_cumulative` branch of CPMpy?"
+        assert len(self.args) == 2, "expected NoOverlap without end variables"
         self.cpm_global = cp.NoOverlap
 
 class NativeNoOverlap(AuxGlobal, NativeGlobal):
@@ -25,8 +25,7 @@ class BinaryDecomposedNoOverlap(CustomNoOverlap):
         self.name = "timed_nooverlap"
 
     def iftrue(self):
-        start, dur, end = self.args
-        assert end is None, f"end should be None after refactoring, but got {end}"
+        start, dur = self.args
         start = list(start)
         dur = list(dur)
         njobs = len(start)

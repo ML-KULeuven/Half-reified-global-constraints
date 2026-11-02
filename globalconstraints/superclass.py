@@ -11,6 +11,14 @@ class CustomGlobal(GlobalConstraint):
          super().__init__(*args, **kwargs)
          self.name = "custom_global"
 
+    def call_cpm_global(self, args):
+        # Cumulative without end is stored as a 4-tuple, but its constructor still
+        # takes end as the 3rd positional argument — must pass demand/capacity by name.
+        if getattr(self, "cpm_global", None) is cp.Cumulative and len(args) == 4:
+            start, duration, demand, capacity = args
+            return self.cpm_global(start, duration, demand=demand, capacity=capacity)
+        return self.cpm_global(*args)
+
     def decompose(self):
         raise NotImplementedError("This global constraint cannot be decomposed!!\n"
                                   "You should use the `toplevel`, `iftrue` and `iffalse` methods instead.")
@@ -34,7 +42,7 @@ class NativeGlobal(CustomGlobal):
         return []
 
     def iftrue(self):
-        return [self.cpm_global(*self.args)]
+        return [self.call_cpm_global(self.args)]
 
     def iffalse(self):
         return []
@@ -71,7 +79,7 @@ class AuxGlobal(CustomGlobal):
 
     def check_if_sat(self):
 
-        model = cp.Model(self.cpm_global(*self.args))
+        model = cp.Model(self.call_cpm_global(self.args))
         res = model.solve(**self.solver_kwargs)
         if model.status().exitstatus == ExitStatus.UNKNOWN:
             raise TimeoutError(f"Timeout during intialization of {self}")
@@ -87,7 +95,7 @@ class AuxGlobal(CustomGlobal):
             raise ValueError(f"{self} is not an AuxGlobal (maybe a decomposition?), you probably need to override this method.")
         if self.sol is not None:
             args = [self.new_args[i] if i  in self.to_replace else self.args[i] for i in range(len(self.args))]
-            return self.cpm_global(*args)
+            return self.call_cpm_global(args)
         return []
 
     def iftrue(self):
